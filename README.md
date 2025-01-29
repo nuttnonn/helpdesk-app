@@ -13,13 +13,16 @@ git clone https://github.com/nuttnonn/helpdesk-app.git
 cd helpdesk-app
 ```
 
+### 2. **Add .env file:**
+Create .env file for the frontend and backend at each root.
 
-### 2. **Run the project using Docker Compose:**
+
+### 3. **Run the project using Docker Compose:**
 ```sh
-docker-compose up --build -d
+docker compose up --build -d
 ```
    
    
-### 3. **Access the services:**
+### 4. **Access the services:**
 - **Frontend (React):** http://localhost:5173
 - **Backend API (Nest.js):** http://localhost:3000
