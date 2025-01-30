@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TicketsModule } from './tickets/tickets.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
     imports: [
@@ -25,6 +27,8 @@ import { TicketsModule } from './tickets/tickets.module';
                 synchronize: true,
             }),
         }),
+        UsersModule,
+        AuthModule,
         TicketsModule,
     ],
     controllers: [AppController],

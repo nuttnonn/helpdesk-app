@@ -1,20 +1,25 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, NotFoundException, UseGuards, Req } from '@nestjs/common';
 import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dtos/create-ticket.dto';
 import { UpdateTicketDto } from './dtos/update-ticket.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { plainToInstance } from 'class-transformer';
+import { Ticket } from './entities/ticket.entity';
 
 @Controller('tickets')
 export class TicketsController {
     constructor(private readonly ticketsService: TicketsService) {}
 
+    @UseGuards(AuthGuard('jwt') as any)
     @Post()
-    async create(@Body() createTicketDto: CreateTicketDto) {
-        return this.ticketsService.create(createTicketDto);
+    async create(@Body() createTicketDto: CreateTicketDto, @Req() req) {
+        return this.ticketsService.create(createTicketDto, req.user);
     }
 
     @Get()
     async find() {
-        return this.ticketsService.find();
+        const tickets = await this.ticketsService.find();
+        return plainToInstance(Ticket, tickets);
     }
 
     @Get(':id')
@@ -23,12 +28,14 @@ export class TicketsController {
         if (!ticket) {
             throw new NotFoundException(`Ticket ${id} not found`);
         }
-        return ticket;
+        return plainToInstance(Ticket, ticket);
     }
 
+    @UseGuards(AuthGuard('jwt') as any)
     @Patch(':id')
-    async update(@Param('id') id: number, @Body() updateTicketDto: UpdateTicketDto) {
-        return this.ticketsService.update(id, updateTicketDto);
+    async update(@Param('id') id: number, @Body() updateTicketDto: UpdateTicketDto, @Req() req) {
+        const ticket = await this.ticketsService.update(id, updateTicketDto, req.user);
+        return plainToInstance(Ticket, ticket);
     }
 
     @Delete(':id')
