@@ -24,10 +24,14 @@
     }
 
     p {
-        @apply font-body text-[20px] leading-[32px] font-medium text-textSecondary largePhone:text-[14px] largePhone:leading-[20px] largePhone:font-normal;
+        @apply font-body text-[20px] leading-[32px] font-medium text-textPrimary largePhone:text-[14px] largePhone:leading-[20px] largePhone:font-normal;
     }
 
     p.p2 {
         @apply font-body text-[16px] leading-[24px] font-normal text-textSecondary largePhone:text-[14px] largePhone:leading-[20px];
+    }
+
+    button {
+        @apply font-heading text-[14px] leading-[16px] font-normal text-textPrimary
     }
 }

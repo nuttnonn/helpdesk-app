@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ValidationPipe } from '@nestjs/common';
+import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
 
 interface AppConfig {
     PORT: number;
@@ -14,6 +14,14 @@ async function bootstrap () {
     app.useGlobalPipes(
         new ValidationPipe({
             whitelist: true,
+            transform: true,
+            exceptionFactory: (errors) => {
+                const firstError = errors[0];
+                const message = firstError.constraints
+                    ? Object.values(firstError.constraints)[0]
+                    : 'Validation error';
+                return new UnprocessableEntityException(message);
+            },
         }),
     );
 

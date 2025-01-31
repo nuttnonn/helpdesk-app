@@ -1,0 +1,11 @@
+import axiosInstance from "../../api/axiosInstance";
+import { LoginRequest, LoginFailed, LoginSuccess } from './types/login.ts';
+
+export const loginUserAPI = async ({ email, password }: LoginRequest): Promise<LoginSuccess> => {
+    try {
+        const response = await axiosInstance.post("/auth/login", { email, password });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data as LoginFailed;
+    }
+};

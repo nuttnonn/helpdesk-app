@@ -1,10 +1,23 @@
 import React from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from "./routes/ProtectedRoute";
+import PublicRoute from './routes/PublicRoute.tsx';
+import LoginPage from "./pages/Login";
+import RegisterPage from './pages/Register.tsx';
+import HomePage from './pages/Home.tsx';
 
 const App = () => {
     return (
-        <div className="w-screen h-screen flex flex-col items-center justify-center">
-            Hello World!
-        </div>
+        <Routes>
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route element={<PublicRoute />}>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+            </Route>
+            <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<HomePage />} />
+            </Route>
+        </Routes>
     )
 }
 
