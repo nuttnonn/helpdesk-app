@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, BeforeInsert, BeforeUpdate } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Ticket } from '../../tickets/entities/ticket.entity';
 import { Exclude } from 'class-transformer';
 
@@ -20,16 +19,4 @@ export class User {
 
     @OneToMany(() => Ticket, (ticket) => ticket.createdBy)
     tickets: Ticket[];
-
-    @BeforeInsert()
-    async hashPasswordBeforeInsert() {
-        this.password = await bcrypt.hash(this.password, 14);
-    }
-
-    @BeforeUpdate()
-    async hashPasswordBeforeUpdate() {
-        if (this.password) {
-            this.password = await bcrypt.hash(this.password, 14);
-        }
-    }
 }
