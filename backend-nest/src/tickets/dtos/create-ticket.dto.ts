@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { TicketStatus } from '../enums/status.enum';
 
 export class CreateTicketDto {
     @IsNotEmpty()
@@ -10,6 +11,13 @@ export class CreateTicketDto {
     description: string;
 
     @IsNotEmpty()
-    @IsEmail()
     contactInfo: string;
+
+    @IsOptional()
+    @IsEnum(TicketStatus, { message: 'Status must be pending, accepted, resolved, or rejected' })
+    status: TicketStatus;
+
+    @IsOptional()
+    @IsNumber()
+    order: number;
 }

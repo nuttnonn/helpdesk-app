@@ -1,9 +1,17 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import axiosInstance from "../../api/axiosInstance";
 import { AxiosError } from "axios";
-import { RegisterUserRequest, RegisterUserSuccess, RegisterUserFailed } from "./types/registerUser.ts";
-import { FetchUserRequest, FetchUserRequestFailed, FetchUserRequestSuccess } from './types/fetchUser.ts';
-import { UpdateUserFailed, UpdateUserRequest, UpdateUserSuccess } from './types/updateUser.ts';
+import {
+    RegisterUserRequest,
+    RegisterUserSuccess,
+    RegisterUserFailed,
+    FetchUserRequest,
+    FetchUserRequestFailed,
+    FetchUserRequestSuccess,
+    UpdateUserFailed,
+    UpdateUserRequest,
+    UpdateUserSuccess,
+} from "./usersTypes.ts";
 
 export const useRegisterUser = (
     onSuccess?: () => void,

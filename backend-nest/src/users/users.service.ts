@@ -17,7 +17,7 @@ export class UsersService {
 
         const existingUser = await this.userRepository.findOne({ where: { email } });
         if (existingUser) {
-            throw new ConflictException('User with this email already exists');
+            throw new ConflictException('UsersTypes with this email already exists');
         }
 
         createUserDto.password = await bcrypt.hash(password, 14);

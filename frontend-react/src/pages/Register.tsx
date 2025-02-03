@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useRegisterUser } from '../features/users/userAPI.ts';
+import { useRegisterUser } from '../features/users/usersAPI.ts';
 import FormCard from '../components/cards/FormCard.tsx';
 import UserForm from '../components/forms/UserForm.tsx';
+import { message } from 'antd';
 
 const RegisterPage = () => {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ const RegisterPage = () => {
         await registerUser(values, {
             onSuccess: () => {
                 navigate("/login");
+                message.success("Registered successfully!");
             },
         });
     };

@@ -1,5 +1,5 @@
 import axiosInstance from "../../api/axiosInstance";
-import { LoginRequest, LoginFailed, LoginSuccess } from './types/login.ts';
+import { LoginRequest, LoginFailed, LoginSuccess } from './authTypes.ts';
 
 export const loginUserAPI = async ({ email, password }: LoginRequest): Promise<LoginSuccess> => {
     try {

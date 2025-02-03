@@ -16,14 +16,17 @@ export class Ticket {
     @Column()
     contactInfo: string;
 
+    @Column({ type: 'enum', enum: TicketStatus, default: TicketStatus.PENDING })
+    status: TicketStatus;
+
+    @Column({ default: 0 })
+    order: number;
+
     @CreateDateColumn()
     createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
-
-    @Column({ type: 'enum', enum: TicketStatus, default: TicketStatus.PENDING })
-    status: TicketStatus;
+    @Column({ type: 'timestamp', nullable: true })
+    updatedAt: Date | null;
 
     @ManyToOne(() => User, (user) => user.tickets, { eager: true })
     createdBy: User;

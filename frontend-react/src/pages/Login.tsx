@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import FormCard from '../components/cards/FormCard.tsx';
 import LoginForm from '../components/forms/LoginForm.tsx';
-import { LoginRequest } from '../features/auth/types/login.ts';
+import { LoginRequest } from '../features/auth/authTypes.ts';
 
 const LoginPage = () => {
     const dispatch = useDispatch<AppDispatch>();

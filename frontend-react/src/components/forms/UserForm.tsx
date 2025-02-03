@@ -30,21 +30,21 @@ const UserForm: React.FC<UserFormProps> = ({
             initialValues={user}
         >
             <Form.Item
-                label={<span className="text-textPrimary font-semibold">Name</span>}
+                label={<span className="form-label">Name</span>}
                 name="name"
                 rules={[{ required: true, message: "Please enter your name!" }]}
             >
-                <Input placeholder="Enter your name" size="large" />
+                <Input placeholder="Enter your name" size="large" allowClear />
             </Form.Item>
             <Form.Item
-                label={<span className="text-textPrimary font-semibold">Email</span>}
+                label={<span className="form-label">Email</span>}
                 name="email"
                 rules={[{ required: true, message: "Please enter your email!" }]}
             >
-                <Input type="email" placeholder="Enter your email" size="large" />
+                <Input type="email" placeholder="Enter your email" size="large" allowClear />
             </Form.Item>
             <Form.Item
-                label={<span className="text-textPrimary font-semibold">Password</span>}
+                label={<span className="form-label">Password</span>}
                 name="password"
                 rules={[
                     { required: passwordRequired, message: "Please enter your password!" },
@@ -54,7 +54,7 @@ const UserForm: React.FC<UserFormProps> = ({
                 <Input.Password placeholder="Enter your password" size="large" />
             </Form.Item>
             <Form.Item>
-                <button type="submit" className="w-full mt-4 p-2 bg-primary text-white rounded-md">
+                <button type="submit" className="w-full p-3 bg-primary text-white rounded-md">
                     {isLoading ? (
                         isUpdate ? 'Updating...' : 'Registering...'
                     ) : (

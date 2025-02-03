@@ -7,7 +7,7 @@ import { TbUserSquareRounded } from 'react-icons/tb';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { Modal } from 'antd';
 import UserForm from '../forms/UserForm.tsx';
-import { useUpdateUser } from '../../features/users/userAPI.ts';
+import { useUpdateUser } from '../../features/users/usersAPI.ts';
 
 const Navbar = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -15,8 +15,8 @@ const Navbar = () => {
     const { user } = useSelector((state: RootState) => state.auth);
     const { mutate: updateUser, isPending, isError, error } = useUpdateUser();
 
-    const [openDropdown, setOpenDropdown] = useState<boolean>(false);
-    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+    const [isUserModalOpen, setIsUserModalOpen] = useState<boolean>(false);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -30,33 +30,33 @@ const Navbar = () => {
             onSuccess: (response) => {
                 delete response.password;
                 dispatch(updateUserSuccess(response));
-                setOpenModal(false);
+                setIsUserModalOpen(false);
             },
         });
     };
 
     return (
-        <nav className="w-screen px-4 py-1 fixed top-0 z-50 flex justify-end items-center gap-3 bg-primary">
+        <nav className="w-screen px-4 py-3 fixed top-0 z-50 flex justify-end items-center gap-3 bg-background border-b-[1px] border-border">
             <h4 className="text-xl">{user.name}</h4>
             <div
-                onMouseEnter={() => setOpenDropdown(true)}
-                onMouseLeave={() => setOpenDropdown(false)}
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
                 className="p-1 relative rounded-t-lg ease-in-out duration-300 hover:bg-black/[0.75] hover:backdrop-blur-lg"
             >
                 <TbUserSquareRounded className="text-[40px] text-textPrimary" />
                 <div className={`min-w-36 absolute bottom-0 right-0 translate-y-[100%] flex flex-col justify-start items-start gap-3 ease-in-out duration-300 ${
-                    openDropdown
-                        ? 'opacity-100 h-fit p-4 rounded-lg rounded-tr-none bg-black/[0.75] backdrop-blur-lg'
+                    isDropdownOpen
+                        ? 'opacity-100 h-fit p-4 rounded-lg rounded-tr-none bg-black/[0.95]'
                         : 'opacity-0 h-[0px] overflow-hidden rounded-none p-0 bg-black/[0]'
                 }`}>
                     <button
-                        onClick={() => setOpenModal(true)}
-                        className={`whitespace-nowrap hover:underline ${openDropdown ? 'flex' : 'hidden'}`}>
-                        User Profile
+                        onClick={() => setIsUserModalOpen(true)}
+                        className={`whitespace-nowrap hover:underline ${isDropdownOpen ? 'flex' : 'hidden'}`}>
+                        Users Profile
                     </button>
                     <button
                         onClick={handleLogout}
-                        className={`w-full py-[6px] flex justify-center items-center gap-2 rounded-[4px] bg-error/[0.5] hover:bg-error ${openDropdown ? 'flex ease-in-out duration-300' : 'hidden'}`}
+                        className={`w-full py-[6px] flex justify-center items-center gap-2 rounded-[4px] bg-error/[0.5] hover:bg-error ${isDropdownOpen ? 'flex ease-in-out duration-300' : 'hidden'}`}
                     >
                         Logout
                         <IoLogOutOutline className="text-[20px] text-textPrimary" />
@@ -64,20 +64,22 @@ const Navbar = () => {
                 </div>
             </div>
             <Modal
-                title="User Profile"
+                title="Users Profile"
                 centered
-                open={openModal}
+                open={isUserModalOpen}
                 footer={null}
-                onCancel={() => setOpenModal(false)}
+                onCancel={() => setIsUserModalOpen(false)}
                 rootClassName="custom-modal"
             >
-                <UserForm
-                    user={user}
-                    onFinish={onFinish}
-                    isLoading={isPending}
-                    passwordRequired={false}
-                    isUpdate={true}
-                />
+                <div className="w-full pt-6 pb-2">
+                    <UserForm
+                        user={user}
+                        onFinish={onFinish}
+                        isLoading={isPending}
+                        passwordRequired={false}
+                        isUpdate={true}
+                    />
+                </div>
                 {(isError && error) && <p className="text-red-500 text-sm">{error.message}</p>}
             </Modal>
         </nav>
