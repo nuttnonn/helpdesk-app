@@ -26,6 +26,7 @@ docker compose up --build -d
 ### 4. **Access the services:**
 - **Frontend (React):** http://localhost:5173
 - **Backend API (Nest.js):** http://localhost:3000
+- **API Documentation (Swagger):** http://localhost:3000/api
 
 
 

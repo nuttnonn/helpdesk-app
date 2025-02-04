@@ -46,15 +46,6 @@ export class TicketsService {
         return this.ticketRepository.findOneBy({ id });
     }
 
-    // async update(id: number, updateTicketDto: UpdateTicketDto, user: User): Promise<Ticket> {
-    //     const ticket = await this.ticketRepository.findOne({ where: { id } });
-    //     if (!ticket) {
-    //         throw new NotFoundException(`Ticket ${id} not found`);
-    //     }
-    //     Object.assign(ticket, updateTicketDto);
-    //     ticket.modifiedBy = user;
-    //     return this.ticketRepository.save(ticket);
-    // }
     async update(id: number, updateTicketDto: UpdateTicketDto, user: User): Promise<Ticket> {
         const ticket = await this.ticketRepository.findOne({ where: { id } });
         if (!ticket) {
@@ -64,7 +55,6 @@ export class TicketsService {
         Object.assign(ticket, updateTicketDto);
         ticket.modifiedBy = user;
 
-        // Use updatedAt from frontend if provided
         if (updateTicketDto.updatedAt) {
             ticket.updatedAt = new Date(updateTicketDto.updatedAt);
         }
@@ -80,42 +70,24 @@ export class TicketsService {
         throw new ForbiddenException("Ticket can not be removed");
     }
 
-    // async reorderTicket(id: number, newStatus: TicketStatus, newOrder: number): Promise<Ticket> {
-    //     const ticket = await this.ticketRepository.findOne({ where: { id } });
-    //     if (!ticket) {
-    //         throw new NotFoundException(`Ticket ${id} not found`);
-    //     }
-    //     ticket.status = newStatus;
-    //     ticket.order = newOrder;
-    //     return this.ticketRepository.save(ticket);
-    // }
     async reorderTicket(id: number, reorderTicketDto: ReorderTicketDto, user: User): Promise<Ticket> {
         const ticket = await this.ticketRepository.findOne({ where: { id } });
         if (!ticket) {
             throw new NotFoundException(`Ticket ${id} not found`);
         }
 
-        console.log(`-------------- Ticket ID: ${id} --------------`);
-        console.log('reorderTicketDto:', reorderTicketDto);
-
-        // Prepare update data
         const updateData: Partial<Ticket> = {
             status: reorderTicketDto.status,
             order: reorderTicketDto.order,
         };
 
-        // ✅ If `updatedAt` is provided (ticket was manually moved by user), set `updatedAt` and `modifiedBy`
         if (reorderTicketDto.updatedAt) {
             updateData.updatedAt = new Date(reorderTicketDto.updatedAt);
             updateData.modifiedBy = user;
         }
 
-        console.log('updateData:', updateData);
-
-        // ✅ Perform update
         await this.ticketRepository.update(id, { ...updateData });
 
-        // ✅ Return updated ticket
         return this.ticketRepository.findOne({ where: { id } });
     }
 }
