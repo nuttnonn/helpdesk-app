@@ -26,3 +26,24 @@ docker compose up --build -d
 ### 4. **Access the services:**
 - **Frontend (React):** http://localhost:5173
 - **Backend API (Nest.js):** http://localhost:3000
+
+
+
+## Kanban Board Design
+![Helpdesk Design](assets/helpdesk-design.png)
+
+
+
+## App Preview
+<p align="center">
+  <img src="assets/helpdesk-example1.png" alt="Helpdesk Example 1" width="49%">
+  <img src="assets/helpdesk-example2.png" alt="Helpdesk Example 2" width="49%">
+</p>
+
+
+
+## Responsive Design
+<p align="center">
+  <img src="assets/helpdesk-example3.png" alt="Helpdesk Example 3" width="49%">
+  <img src="assets/helpdesk-example4.png" alt="Helpdesk Example 4" width="49%">
+</p>
