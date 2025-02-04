@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="w-screen min-h-screen">
+        <div className="w-screen min-h-screen overflow-x-hidden">
             <Navbar />
             {children}
         </div>

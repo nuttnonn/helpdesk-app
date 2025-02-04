@@ -25,17 +25,18 @@ const CustomSelectInput: React.FC<CustomSelectInputProps> = ({ value, onChange, 
                     <span className="!text-textSecondary">{placeholder}</span>
                 ) : (
                     <Box className="flex justify-start items-center gap-1">
+                        <span className="!text-textSecondary hidden tablet:flex">{placeholder}</span>
                         {selected.map((status) => (
                             <Chip
                                 key={status}
                                 label={status}
-                                className="!p-0 !bg-primary !text-textPrimary uppercase !rounded-md"
+                                className="!p-0 !bg-primary !text-textPrimary uppercase !rounded-md tablet:!hidden tablet:!-z-50"
                             />
                         ))}
                     </Box>
                 )
             }
-            className="w-[450px] h-10 !rounded-lg bg-background border border-border"
+            className="w-[450px] h-10 !rounded-lg bg-background border border-border tablet:w-44 smallPhone:w-full"
             sx={{
                 color: "#E2E8F0",
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": { border: 0 },

@@ -30,28 +30,34 @@ const Header = () => {
 
     return (
         <div className="w-full flex justify-between items-center gap-6">
-            <div className="flex justify-start items-center gap-3">
+            <div className="flex justify-start items-center gap-3 largePhone:w-full largePhone:justify-between smallPhone:flex-col">
                 <Input
                     placeholder="Search ticket"
                     size="large"
                     allowClear
                     variant="outlined"
                     prefix={<SearchOutlined className="text-gray-400" />}
-                    className="w-80"
+                    className="w-80 desktop:w-60 smallPhone:w-full"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(setSearchTicketQuery(e.target.value))}
                 />
                 <CustomSelectInput
                     value={selectedStatuses}
                     onChange={handleStatusChange}
                     items={statuses}
-                    placeholder="Search by status"
+                    placeholder="Filter by status"
                 />
             </div>
             <button
                 onClick={() => setIsTicketModalOpen(true)}
-                className="px-6 py-2 flex justify-center items-center gap-1 bg-primary border border-primary rounded-md shadow-md ease-in-out duration-300 group hover:bg-transparent hover:text-primary"
+                className="px-6 py-2 flex justify-center items-center whitespace-nowrap gap-1 bg-primary border border-primary rounded-md shadow-md ease-in-out duration-300 hover:bg-transparent hover:text-primary largePhone:hidden"
             >
                 <MdAdd className="text-[24px]" /> Create Ticket
+            </button>
+            <button
+                onClick={() => setIsTicketModalOpen(true)}
+                className="fixed bottom-0 right-0 -translate-x-[30%] -translate-y-[60%] z-50 p-3 justify-center items-center bg-primary border border-primary rounded-full shadow-md ease-in-out duration-300 hover:bg-transparent hover:text-primary hidden largePhone:flex"
+            >
+                <MdAdd className="text-[40px]" />
             </button>
             <CreateTicketModal
                 isOpen={isTicketModalOpen}

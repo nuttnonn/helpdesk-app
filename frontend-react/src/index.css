@@ -16,7 +16,7 @@
     }
 
     h3 {
-        @apply font-heading text-[36px] leading-[50px] font-semibold text-textPrimary largePhone:text-[24px] largePhone:leading-[35px];
+        @apply font-heading text-[36px] leading-[50px] font-semibold text-textPrimary largePhone:text-[32px] largePhone:leading-[35px];
     }
 
     h4 {

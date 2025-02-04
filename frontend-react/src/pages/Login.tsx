@@ -20,7 +20,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="w-screen min-h-screen flex items-center justify-center">
+        <div className="w-screen min-h-screen px-4 flex items-center justify-center">
             <FormCard title="Login">
                 <LoginForm onFinish={onFinish} isLoading={loading} />
                 {error && <p className="text-red-500 text-sm">{error.message}</p>}

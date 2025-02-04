@@ -19,7 +19,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="w-screen min-h-screen flex items-center justify-center">
+        <div className="w-screen min-h-screen px-4 flex items-center justify-center">
             <FormCard title="Register">
                 <UserForm onFinish={onFinish} isLoading={isPending} />
                 {(isError && error) && <p className="text-red-500 text-sm">{error.message}</p>}

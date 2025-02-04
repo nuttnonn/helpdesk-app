@@ -39,7 +39,7 @@ const Navbar = () => {
         <nav className="w-screen px-4 py-3 fixed top-0 z-50 flex justify-between items-center gap-3 bg-background border-b-[1px] border-border">
             <h3 className="text-secondary font-extrabold tracking-tighter">Helpdesk.</h3>
             <div className="flex justify-end items-center gap-3">
-                <h4 className="text-xl">{user.name}</h4>
+                <h4 className="text-xl largePhone:hidden">{user.name}</h4>
                 <div
                     onMouseEnter={() => setIsDropdownOpen(true)}
                     onMouseLeave={() => setIsDropdownOpen(false)}
