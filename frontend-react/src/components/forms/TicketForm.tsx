@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { Form, FormInstance, Input, Select } from 'antd';
-import { Ticket } from '../../features/tickets/ticketsTypes.ts';
+import React from 'react';
+import { Form, FormInstance, Input } from 'antd';
 
 type TicketFormValues = {
     title: string;
@@ -10,7 +9,7 @@ type TicketFormValues = {
 
 interface TicketFormProps {
     form: FormInstance;
-    ticket?: Ticket;
+    name: string;
     onFinish: (values: TicketFormValues) => void;
     isLoading: boolean;
     isUpdate?: boolean;
@@ -18,7 +17,7 @@ interface TicketFormProps {
 
 const TicketForm: React.FC<TicketFormProps> = ({
     form,
-    ticket,
+    name,
     onFinish,
     isLoading,
     isUpdate,
@@ -26,7 +25,7 @@ const TicketForm: React.FC<TicketFormProps> = ({
     return (
         <Form
             form={form}
-            name="ticketForm"
+            name={name}
             layout="vertical"
             onFinish={onFinish}
             className="w-full"

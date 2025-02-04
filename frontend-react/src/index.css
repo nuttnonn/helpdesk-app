@@ -45,29 +45,54 @@
 }
 
 
-/*Custom Antd Modal*/
-.custom-modal .ant-modal-content {
-    @apply bg-surface
+@layer components {
+    /*Custom Antd Modal*/
+    .custom-modal .ant-modal-content {
+        @apply bg-surface;
+    }
+
+    .custom-modal .ant-modal-header {
+        @apply bg-surface text-primary;
+    }
+
+    .custom-modal .ant-modal-title {
+        @apply text-xl font-bold text-primary;
+    }
+
+    .custom-modal .ant-modal-close {
+        @apply text-textPrimary hover:text-secondary;
+    }
+
+    .custom-modal .ant-modal-footer .ant-btn-primary {
+        @apply bg-primary text-white hover:bg-secondary;
+    }
+
+    .custom-modal .ant-modal-footer .ant-btn-default {
+        @apply bg-gray-700 text-white hover:bg-gray-600;
+    }
 }
 
-.custom-modal .ant-modal-header {
-    @apply bg-surface text-primary;
+
+/*Antd Input*/
+.ant-input {
+    @apply bg-background text-textPrimary border-border placeholder:text-textSecondary
+    focus:border-primary focus:ring-secondary focus:bg-background
+    hover:bg-background active:bg-background
+    !important;
 }
 
-.custom-modal .ant-modal-title {
-    @apply text-xl font-bold text-primary;
+.ant-input-affix-wrapper {
+    @apply bg-background border border-border focus:border-primary focus:ring-primary
+    focus-within:bg-background hover:bg-background active:bg-background
+    !important;
 }
 
-.custom-modal .ant-modal-close {
-    @apply text-textPrimary hover:text-secondary;
+.ant-input-clear-icon {
+    @apply text-textPrimary hover:text-secondary !important;
 }
 
-.custom-modal .ant-modal-footer .ant-btn-primary {
-    @apply bg-primary text-white hover:bg-secondary;
-}
-
-.custom-modal .ant-modal-footer .ant-btn-default {
-    @apply bg-gray-700 text-white hover:bg-gray-600;
+.ant-input-password-icon {
+    @apply text-textPrimary hover:text-secondary !important;
 }
 
 
@@ -82,7 +107,7 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-    @apply h-[2px]
+    @apply w-[2px] h-[2px]
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
