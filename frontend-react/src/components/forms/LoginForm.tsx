@@ -28,7 +28,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onFinish, isLoading }) => {
                 <Input.Password placeholder="Enter your password" size="large" />
             </Form.Item>
             <Form.Item>
-                <button type="submit" className="w-full p-3 bg-primary text-white rounded-md">
+                <button type="submit" className="w-full p-3 whitespace-nowrap bg-primary border border-primary rounded-md shadow-md ease-in-out duration-300 hover:bg-secondary hover:border-secondary">
                     {isLoading ? "Logging in..." : "Login"}
                 </button>
             </Form.Item>

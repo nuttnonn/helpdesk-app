@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient, UseMutationResult } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient, UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import axiosInstance from "../../api/axiosInstance";
 import { AxiosError } from "axios";
 import { Ticket, CreateTicketRequest, UpdateTicketRequest, ReorderTicketRequest } from "./ticketsTypes.ts";

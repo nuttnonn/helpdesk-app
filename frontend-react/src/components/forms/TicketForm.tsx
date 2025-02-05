@@ -52,7 +52,7 @@ const TicketForm: React.FC<TicketFormProps> = ({
                 <Input.TextArea placeholder="Enter contact info" size="large" autoSize={{ minRows: 2 }} />
             </Form.Item>
             <Form.Item>
-                <button type="submit" className="w-full p-3 bg-primary text-white rounded-md">
+                <button type="submit" className="w-full p-3 whitespace-nowrap bg-primary border border-primary rounded-md shadow-md ease-in-out duration-300 hover:bg-secondary hover:border-secondary">
                     {isLoading ? (
                         isUpdate ? 'Updating...' : 'Creating...'
                     ) : (
