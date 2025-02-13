@@ -5,7 +5,7 @@ export const loginUserAPI = async ({ email, password }: LoginRequest): Promise<L
     try {
         const response = await axiosInstance.post("/auth/login", { email, password });
         return response.data;
-    } catch (error) {
+    } catch (error: any) {
         throw error.response?.data as LoginFailed;
     }
 };
