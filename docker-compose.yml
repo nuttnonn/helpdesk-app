@@ -21,7 +21,6 @@ services:
       context: ./backend-nest
       dockerfile: Dockerfile
     container_name: nestjs_app
-    restart: always
     env_file:
       - ./backend-nest/.env
     ports:
@@ -41,7 +40,6 @@ services:
   postgres:
     image: postgres:15
     container_name: postgres_db
-    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 7vGWe4kq8o3xBo
